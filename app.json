@@ -1,20 +1,22 @@
 {
   "expo": {
     "name": "Quss",
-    "slug": "Quss",
+    "slug": "quss",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "quss",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "io.github.neutrino2211.quss"
     },
     "android": {
+      "package": "io.github.neutrino2211.quss",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/images/QUSS-Logo-l.png",
+        "backgroundColor": "#439a85"
       }
     },
     "web": {
@@ -27,15 +29,35 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "image": "./assets/images/QUSS-Logo-xl.png",
+          "backgroundColor": "#439a85",
+          "imageWidth": 200
+        }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/SpaceMono-Regular.ttf",
+            "./assets/fonts/NotoSans-Regular.ttf",
+            "./assets/fonts/NotoSans-Bold.ttf",
+            "./assets/fonts/NotoSans-ExtraLight.ttf",
+            "./assets/fonts/NotoSans-Italic.ttf"
+          ]
         }
       ]
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "2ad70b07-7e4e-4475-86a0-856515183e54"
+      }
+    },
+    "owner": "neutrino2211"
   }
 }
