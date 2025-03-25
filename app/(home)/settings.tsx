@@ -11,7 +11,7 @@ import { Pressable, Text, TextInput, useColorScheme, View, Keyboard, ActivityInd
 export default function SettingsPage() {
     const router = useRouter();
     const colorScheme = useColorScheme();
-
+    const { user } = useUser();
     const [syncLibData, setSyncLibData] = useState(true);
     const [webSearch, setWebSearch] = useState(true);
     const [selectedSearchPriority, setSelectedSearchPriority] = useState(0);
@@ -47,6 +47,7 @@ export default function SettingsPage() {
 
             <Setting
                 name="Web search priority"
+                inactive={!webSearch}
                 value={() => 
                 <Picker 
                 style={{
@@ -63,14 +64,23 @@ export default function SettingsPage() {
                 onValueChange={(itemValue, itemIndex) =>
                   setSelectedSearchPriority(itemValue)
                 }>
-                    <Picker.Item label="None" value={0} />
                     <Picker.Item label="Low" value={1} />
                     <Picker.Item label="Medium" value={2} />
                     <Picker.Item label="High" value={3} />
                 </Picker>
                 }
-                help="How important should web searches be considered compared to the internall Quss library. None = Don't use web searches, Low = Use one or two web search results, Medium = Use two to four web search results, High = Use only one library result along with web search results"
+                help="How important should web searches be considered compared to the internal Quss library (if enabled). Low = Use one or two web search results, Medium = Use two to four web search results, High = Use only one library result along with web search results"
             />
+
+            {/** Upgrade to Pro Prompt */}
+            {
+                !user?.publicMetadata.paid && (
+                    <View style={{marginHorizontal: 20, marginTop: 40}}>
+                        <Text style={{fontSize: 16, color: APP_THEME.primary_text_color(colorScheme), fontFamily: "NotoSans-Bold"}}>Upgrade to Pro</Text>
+                        <Text style={{fontSize: 14, color: APP_THEME.muted_placeholder(colorScheme), fontFamily: "NotoSans-Regular"}}>Get access to all features and content</Text>
+                    </View>
+                )
+            }
         </View>
     )
 }
